@@ -1,0 +1,98 @@
+🔹 BACKEND API DETAILS (SIMPLE VERSION)
+1️⃣ API NAME
+POST /chat
+
+
+👉 This is the ONLY API frontend will use.
+
+2️⃣ PURPOSE OF THIS API
+
+Frontend sends user text
+
+Backend sends text to AI
+
+Backend stores data in database
+
+Backend sends AI reply back
+
+Frontend does NOT talk to AI or DB.
+
+3️⃣ REQUEST FORMAT (Frontend → Backend)
+URL
+http://localhost:5000/chat
+
+Method
+POST
+
+Headers
+Content-Type: application/json
+
+Body (JSON)
+{
+  "message": "I feel confused about my future",
+  "session_id": "optional"
+}
+
+4️⃣ REQUEST VARIABLES (VERY IMPORTANT)
+Variable	Type	Meaning
+message	string	User input text
+session_id	string	Chat session id (optional)
+Rules
+
+First message → send only message
+
+Next messages → send both message and session_id
+
+5️⃣ RESPONSE FORMAT (Backend → Frontend)
+Body (JSON)
+{
+  "reply": "It sounds like you're feeling uncertain and under pressure. Let’s slow this down together.",
+  "session_id": "abc123-session-id"
+}
+
+6️⃣ RESPONSE VARIABLES
+Variable	Type	Meaning
+reply	string	Text shown in UI
+session_id	string	Store this for next message
+7️⃣ BASIC FLOW (EASY)
+
+User types text
+
+Frontend calls /chat
+
+Backend returns reply + session_id
+
+Frontend shows reply
+
+Next message → reuse session_id
+
+8️⃣ WHAT FRONTEND SHOULD NOT DO ❌
+
+Do NOT analyze emotion
+
+Do NOT change reply text
+
+Do NOT generate session_id
+
+Do NOT connect to DB
+
+Do NOT call AI directly
+
+9️⃣ ERROR RESPONSE (IF ANY)
+{
+  "reply": "Something went wrong. Please try again."
+}
+
+
+Frontend just shows message.
+
+🔹 ONE-LINE SUMMARY
+Frontend sends message → Backend handles AI & DB → Frontend shows reply
+
+=================================
+
+POST /auth/register
+2️⃣ POST /auth/verify-register-otp
+3️⃣ POST /auth/login-password
+4️⃣ POST /auth/login-otp
+5️⃣ POST /auth/verify-login-otp

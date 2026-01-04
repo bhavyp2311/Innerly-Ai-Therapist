@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innerly - Reflective AI Therapy</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lottie -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        
+        <video autoplay muted loop playsinline class="ambient-video">
+            <source src="https://cdn.coverr.co/videos/coverr-abstract-thinking-4065/1080p.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <!-- Floating Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Header -->
+    <header class="navbar" id="navbar">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="logo-text">Innerly</div>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#help">Help</a></li>
+        </ul>
+        
+        <button class="nav-cta" onclick="openLogin()">Login</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-eyebrow">REFLECTIVE ARTIFICIAL INTELLIGENCE</div>
+                <h1 class="hero-title">Innerly</h1>
+                <p class="hero-description">
+                    A reflective AI system designed to help people process thoughts,
+                    reduce mental noise, and regain clarity — at their own pace.
+                    Experience mindful guidance through AI-powered therapeutic conversations.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="chat.html" class="btn btn-primary">
+                        <i class="fas fa-comments"></i> AI Therapist
+                    </a>
+                    <a href="#about" class="btn btn-secondary">
+                        <i class="fas fa-arrow-down"></i> Learn More
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="neural-network" id="neuralNetwork"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reflection Preview -->
+    <section class="reflection-preview">
+        <h2 class="preview-title">Try it here — just a glimpse</h2>
+        
+        <div class="preview-input-container">
+            <textarea 
+                id="previewInput" 
+                class="preview-input" 
+                placeholder="Type a thought that keeps repeating in your mind..."
+                rows="4"
+            ></textarea>
+        </div>
+        
+        <div id="previewResponse" class="preview-response">
+            <!-- JS will fill this -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Innerly</h2>
+                <p class="section-subtitle">An AI-powered companion for mental clarity and emotional well-being</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Innerly is an intent-aware reflective AI designed to help users gain mental clarity,
+                        reduce stress, and support emotional well-being. Our system uses advanced natural language
+                        processing to understand emotional context and provide personalized guidance.
+                    </p>
+                    <p>
+                        By guiding self-reflection, it helps users identify patterns,
+                        manage emotions, and make thoughtful decisions. Unlike traditional chatbots,
+                        Innerly focuses on creating a safe, judgment-free space for genuine self-exploration.
+                    </p>
+                    <p>
+                        Our mission is to make reflective therapy accessible to everyone, using AI to
+                        provide support that's available 24/7, confidential, and tailored to your unique needs.
+                    </p>
+                </div>
+                
+                <div class="about-visual">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How Innerly Helps</h2>
+                <p class="section-subtitle">Designed with empathy and advanced technology to support your mental journey</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Emotional Understanding</h3>
+                    <p class="feature-description">
+                        The AI asks thoughtful questions to truly understand how you feel,
+                        recognizing subtle emotional cues and providing relevant support.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Safe & Supportive</h3>
+                    <p class="feature-description">
+                        A judgment-free environment to express yourself freely. Your privacy
+                        and emotional safety are our top priorities.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="feature-title">Guided Healing</h3>
+                    <p class="feature-description">
+                        Personalized guidance that encourages calmness and clarity through
+                        evidence-based therapeutic techniques.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Insightful Analysis</h3>
+                    <p class="feature-description">
+                        Recognizes recurring emotional and cognitive patterns, helping you
+                        understand yourself better over time.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Privacy-Focused</h3>
+                    <p class="feature-description">
+                        Conversations remain confidential and secure. We use end-to-end encryption
+                        to protect your personal reflections.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="feature-title">Progress Tracking</h3>
+                    <p class="feature-description">
+                        Visualize your emotional journey and growth over time with insightful
+                        metrics and reflection history.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section id="help" class="help">
+        <div class="container">
+            <div class="help-content">
+                <div class="section-header">
+                    <h2 class="section-title">How to Use Innerly</h2>
+                    <p class="section-subtitle">Getting started with your reflective AI companion</p>
+                </div>
+                
+                <p>
+                    Click the <strong>AI Therapist</strong> button to begin your reflective session.
+                    Share your thoughts openly and respond honestly to the AI's guided questions.
+                </p>
+                
+                <ul class="help-list">
+                    <li><i class="fas fa-check-circle"></i> Take a moment to settle before starting your session</li>
+                    <li><i class="fas fa-check-circle"></i> There are no right or wrong answers—just honest reflection</li>
+                    <li><i class="fas fa-check-circle"></i> You may pause or stop anytime you feel comfortable</li>
+                    <li><i class="fas fa-check-circle"></i> Regular practice enhances the therapeutic benefits</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Innerly | Reflective AI Therapy Platform | Team Project</p>
+            <p style="margin-top: 10px; font-size: 14px; color: rgba(192, 192, 192, 0.7);">
+                Designed with empathy and advanced AI technology
+            </p>
+        </div>
+    </footer>
+
+    <!-- Login Popup -->
+    <div id="loginPopup" class="login-popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3 class="popup-title" id="popupTitle">Login to Innerly</h3>
+                <button class="close-btn" onclick="closeLogin()">&times;</button>
+            </div>
+            
+            <!-- Login Options -->
+            <div id="loginForm">
+                <div class="form-group">
+                    <button class="btn btn-primary" onclick="showEmailPassLogin()" style="width: 100%; margin-bottom: 15px;">
+                        <i class="fas fa-envelope"></i> Sign in with Email & Password
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-secondary" onclick="showOtpLogin()" style="width: 100%; margin-bottom: 15px;">
+                        <i class="fas fa-mobile-alt"></i> Sign in with Email & OTP
+                    </button>
+                </div>
+                
+                <div class="form-toggle">
+                    Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a>
+                </div>
+            </div>
+            
+            <!-- Email & Password Form -->
+            <div id="emailPassForm" style="display:none;">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" class="form-input" placeholder="Email Address">
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="loginPassword" class="form-input" placeholder="Password">
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="submitEmailPass()" style="width: 100%;">Login</button>
+                    <button class="btn btn-secondary" onclick="showLogin()" style="width: 100%;">Back to Options</button>
+                </div>
+            </div>
+            
+            <!-- OTP Form -->
+            <div id="otpForm" style="display:none;">
+                <div class="form-group">
+                    <input type="email" id="otpEmail" class="form-input" placeholder="Email Address">
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-primary" onclick="sendOtp()" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Send OTP
+                    </button>
+                </div>
+                
+                <div class="otp-container">
+                    <input type="text" id="otpCode" class="form-input otp-input" placeholder="Enter OTP" maxlength="6">
+                </div>
+                
+                <div class="form-actions">
+                                        <button class="btn btn-primary" onclick="submitOtp()" style="width: 100%;">Verify & Login</button>
+                    <button class="btn btn-secondary" onclick="showLogin()" style="width: 100%;">Back to Options</button>
+                </div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signupForm" style="display:none;">
+                <div class="form-group">
+                    <input type="text" id="name" class="form-input" placeholder="Full Name">
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" id="email" class="form-input" placeholder="Email Address">
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="mobile" class="form-input" placeholder="Mobile Number">
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" class="form-input" placeholder="Create Password">
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="submitSignup()" style="width: 100%;">Create Account</button>
+                    <button class="btn btn-secondary" onclick="showLogin()" style="width: 100%;">Back to Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innerly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .scrollbar-custom::-webkit-scrollbar {
+            width: 3px;
+        }
+        
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background: #666666;
+            border-radius: 10px;
+        }
+        
+        /* Calming animation keyframes */
+        @keyframes gentleBreath {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(0px); opacity: 0.3; }
+            50% { transform: translateY(-10px); opacity: 1; }
+            100% { transform: translateY(-20px); opacity: 0; }
+        }
+        
+        @keyframes textFadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .breathing-dot {
+            animation: gentleBreath 3s ease-in-out infinite;
+        }
+        
+        .floating-particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatUp 8s linear infinite;
+        }
+        /* AI typing indicator */
+        .typing {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        opacity: 0.7;
+        }
+
+        .typing-dots span {
+        animation: blink 1.4s infinite both;
+        font-size: 18px;
+        }
+
+        .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+        0% { opacity: 0.2; }
+        20% { opacity: 1; }
+        100% { opacity: 0.2; }
+        }
+
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden bg-black text-white">
+
+  <!-- ===== CALMING ANIMATION SCREEN (UNCHANGED) ===== -->
+  <div id="animationScreen" class="fixed inset-0 bg-black z-50 overflow-hidden">
+    <!-- Floating Particles -->
+    <div class="absolute inset-0"></div>
+
+    <div class="relative h-full flex flex-col items-center justify-center">
+      <!-- Breathing Circle -->
+      <div class="relative mb-12">
+        <div class="breathing-dot w-32 h-32 rounded-full border-2 border-gray-400 border-opacity-30"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-20 h-20 rounded-full border border-gray-300 border-opacity-50 flex items-center justify-center">
+            <div class="w-12 h-12 rounded-full border border-gray-200 border-opacity-70 flex items-center justify-center">
+              <div class="w-6 h-6 rounded-full bg-gray-100 bg-opacity-30"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Text -->
+      <h1 class="text-5xl font-light tracking-wider text-gray-100 mb-2">Innerly</h1>
+      <p class="text-gray-400 text-lg">A safe space for your thoughts</p>
+
+      <div class="absolute bottom-12 text-gray-500 text-sm">
+        Take a deep breath
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CHAT INTERFACE ===== -->
+  <div id="chatInterface" class="hidden h-screen w-screen">
+    <div class="flex h-full w-full">
+
+      <!-- Sidebar -->
+      <div class="w-64 flex-shrink-0 bg-black border-r border-gray-500 flex flex-col">
+        <div class="p-6 border-b border-gray-500 flex items-center gap-3">
+          <div class="w-9 h-9 border border-gray-500 rounded-lg flex items-center justify-center">I</div>
+          <span class="text-lg">Innerly</span>
+        </div>
+
+        <button id="newChatBtn"
+          class="m-4 p-3 bg-gray-800 border border-gray-600 rounded hover:border-gray-400">
+          + New Chat
+        </button>
+
+        <div id="sessionsList" class="flex-1 overflow-y-auto scrollbar-custom p-4"></div>
+
+        <div class="flex items-center gap-3 p-4 border-t border-gray-700">
+          <div id="userAvatar"
+            class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold">
+            ?
+          </div>
+          <div class="flex-1">
+            <div id="profileName" class="text-sm">Anonymous</div>
+            <div id="profileEmail" class="text-xs text-gray-500"></div>
+          </div>
+          <button id="logoutBtn" class="text-gray-400 hover:text-red-400">⎋</button>
+        </div>
+      </div>
+
+      <!-- Chat Area -->
+      <div class="flex-1 flex flex-col h-full w-full">
+        <!-- Chat Header -->
+        <div class="h-16 border-b border-gray-500 flex items-center px-6">
+            <div class="flex items-center gap-3">
+                <!-- AI / Innerly Icon -->
+                <div
+                class="w-9 h-9 bg-gradient-to-br from-gray-900 to-black
+                        flex items-center justify-center rounded-lg
+                        border border-gray-500 text-gray-300">
+                ✦
+                </div>
+                <!-- Title -->
+                <h2 class="font-medium text-white tracking-wide">
+                Your Safe Space
+                </h2>
+            </div>
+        </div>
+        <div id="chatBox" class="flex-1 w-full overflow-y-auto scrollbar-custom p-6"></div>
+        <div class="border-t border-gray-500 p-6">
+          <div class="flex items-center gap-3">
+                <input
+                id="userInput"
+                type="text"
+                placeholder="Share your thoughts..."
+                class="flex-1 bg-gray-900 border border-gray-500 rounded-xl px-4 py-3"
+                />
+
+                <button onclick="startVoice()"
+                class="p-3 border border-gray-500 rounded-xl">
+                <span class="material-symbols-outlined">mic</span>
+                </button>
+
+                <button id="sendBtn"
+                class="p-3 border border-gray-500 rounded-xl">
+                <span class="material-symbols-outlined">send</span>
+                </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== ANIMATION BOOTSTRAP (UNCHANGED LOGIC) ===== -->
+  <script>
+    const animationScreen = document.getElementById("animationScreen");
+    const chatInterface = document.getElementById("chatInterface");
+
+    function createParticles() {
+      const container = animationScreen.querySelector(".absolute");
+      for (let i = 0; i < 20; i++) {
+        const p = document.createElement("div");
+        p.className = "floating-particle";
+        const size = Math.random() * 8 + 2;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${Math.random() * 100}%`;
+        p.style.bottom = `-${size}px`;
+        p.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(p);
+      }
+    }
+
+    window.addEventListener("load", () => {
+      createParticles();
+      setTimeout(() => {
+        animationScreen.style.animation = "fadeOut 1s ease forwards";
+        setTimeout(() => {
+          animationScreen.style.display = "none";
+          chatInterface.classList.remove("hidden");
+        }, 1000);
+      }, 4000);
+    });
+  </script>
+
+  <script src="chat1.js"></script>
+</body>
+
+</html>
