@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+
+    <script>
+        function validation() {
+
+            let cnt = 0;
+
+            // First Name
+            let fn = document.f.fn.value;
+            if (fn == "") {
+                document.getElementById("ErrFn").innerHTML = "*First name is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrFn").innerHTML = "";
+            }
+
+            // Last Name
+            let ln = document.f.ln.value;
+            if (ln == "") {
+                document.getElementById("ErrLn").innerHTML = "*Last name is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrLn").innerHTML = "";
+            }
+
+            // Contact Number
+            let cn = document.f.cn.value;
+            if (cn == "" || cn.length != 10 || isNaN(cn)) {
+                document.getElementById("ErrCon").innerHTML = "*Contact No is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrCon").innerHTML = "";
+            }
+
+            // Gender
+            let g = document.f.gender;
+            let x = 0;
+            for (let i = 0; i < g.length; i++) {
+                if (g[i].checked)
+                    x++;
+            }
+            if (x == 0) {
+                document.getElementById("ErrGen").innerHTML = "*Gender is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrGen").innerHTML = "";
+            }
+
+            // Hobbies
+            let h = document.f.hobby;
+            let y = 0;
+            for (let i = 0; i < h.length; i++) {
+                if (h[i].checked)
+                    y++;
+            }
+            if (y == 0) {
+                document.getElementById("ErrHob").innerHTML = "*Hobby is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrHob").innerHTML = "";
+            }
+
+            // Email
+            let email = document.f.email.value;
+            if (email == "") {
+                document.getElementById("ErrEmail").innerHTML = "*Email is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrEmail").innerHTML = "";
+            }
+
+            // Password
+            let pass = document.f.pass.value;
+            if (pass == "") {
+                document.getElementById("ErrPass").innerHTML = "*Password is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrPass").innerHTML = "";
+            }
+
+            // Pincode
+            let pin = document.f.pin.value;
+            if (pin == "" || pin.length != 6 || isNaN(pin)) {
+                document.getElementById("ErrPin").innerHTML = "*Pin code is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrPin").innerHTML = "";
+            }
+
+            // City
+            let city = document.f.city.value;
+            if (city == "") {
+                document.getElementById("ErrCity").innerHTML = "*City is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrCity").innerHTML = "";
+            }
+
+            // State
+            let state = document.f.state.value;
+            if (state == "") {
+                document.getElementById("ErrState").innerHTML = "*State is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrState").innerHTML = "";
+            }
+
+            // Country
+            let country = document.f.country.value;
+            if (country == "") {
+                document.getElementById("ErrCountry").innerHTML = "*Country is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrCountry").innerHTML = "";
+            }
+
+            // Nationality
+            let na = document.f.na.value;
+            if (na == "se") {
+                document.getElementById("ErrNa").innerHTML = "*Nationality is required";
+                cnt++;
+            } else {
+                document.getElementById("ErrNa").innerHTML = "";
+            }
+
+            if (cnt == 0) {
+                alert("Form Submitted Successfully");
+                return true;
+            }
+
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+
+<form name="f" onsubmit="return validation()">
+
+<table>
+
+<tr>
+<td>Enter First Name</td>
+<td><input type="text" name="fn"></td>
+<td><span id="ErrFn"></span></td>
+</tr>
+
+<tr>
+<td>Enter Last Name</td>
+<td><input type="text" name="ln"></td>
+<td><span id="ErrLn"></span></td>
+</tr>
+
+<tr>
+<td>Enter Contact No</td>
+<td><input type="text" name="cn"></td>
+<td><span id="ErrCon"></span></td>
+</tr>
+
+<tr>
+<td>Enter Gender</td>
+<td>
+<input type="radio" name="gender">Male
+<input type="radio" name="gender">Female
+</td>
+<td><span id="ErrGen"></span></td>
+</tr>
+
+<tr>
+<td>Hobbies</td>
+<td>
+<input type="checkbox" name="hobby">Sports
+<input type="checkbox" name="hobby">Music
+<br>
+<input type="checkbox" name="hobby">Reading
+<input type="checkbox" name="hobby">Travelling
+</td>
+<td><span id="ErrHob"></span></td>
+</tr>
+
+<tr>
+<td>Enter Email</td>
+<td><input type="text" name="email"></td>
+<td><span id="ErrEmail"></span></td>
+</tr>
+
+<tr>
+<td>Enter Password</td>
+<td><input type="password" name="pass"></td>
+<td><span id="ErrPass"></span></td>
+</tr>
+
+<tr>
+<td>Enter Pincode</td>
+<td><input type="text" name="pin"></td>
+<td><span id="ErrPin"></span></td>
+</tr>
+
+<tr>
+<td>Enter City</td>
+<td><input type="text" name="city"></td>
+<td><span id="ErrCity"></span></td>
+</tr>
+
+<tr>
+<td>Enter State</td>
+<td><input type="text" name="state"></td>
+<td><span id="ErrState"></span></td>
+</tr>
+
+<tr>
+<td>Enter Country</td>
+<td><input type="text" name="country"></td>
+<td><span id="ErrCountry"></span></td>
+</tr>
+
+<tr>
+<td>Nationality</td>
+<td>
+<select name="na">
+<option value="se">--Select--</option>
+<option>Indian</option>
+<option>American</option>
+<option>Canadian</option>
+<option>Australian</option>
+</select>
+</td>
+<td><span id="ErrNa"></span></td>
+</tr>
+
+<tr>
+<td colspan="2">
+<input type="submit" value="Submit">
+</td>
+</tr>
+
+</table>
+
+</form>
+
+</body>
+</html>
